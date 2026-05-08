@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Test Page</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #fff8e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #0d0a01;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .git-container img {
+            max-width: 200px;
+            height: auto;
+            display: none;
+        }
+
+        #loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #0d0a0122;
+            border-top: 5px solid #0d0a01;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        body.loaded #loader {
+            display: none;
+        }
+
+        body.loaded h1 {
+            opacity: 1;
+        }
+
+        body.loaded .git-container img {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader"></div>
+
+    <h1>this is the git test</h1>
+
+    <div class="git-container">
+        <img id="git-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Git_icon.svg/3840px-Git_icon.svg.png" alt="Git Logo">
+    </div>
+
+    <script>
+        const img = document.getElementById('git-logo');
+        
+        const handleLoad = () => {
+            document.body.classList.add('loaded');
+        };
+
+        if (img.complete) {
+            handleLoad();
+        } else {
+            img.addEventListener('load', handleLoad);
+        }
+    </script>
+</body>
+</html>
